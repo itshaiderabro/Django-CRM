@@ -9,19 +9,30 @@
   <div class="card-body">
     <h5 class="card-title">Welcome, {{ user.username }}!</h5>
     <p class="card-text">You are logged in.</p>
-    <a href="{% url 'add_record' %}" class="btn btn-primary">Add Record</a>
+
     <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
   </div>
 </div>
-{% else %}
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title">Welcome to Django CRM!</h5>
-    <p class="card-text">Please log in or register to continue.</p>
-    <a href="{% url 'register' %}" class="btn btn-primary">Register</a>
-    <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
-  </div>
-</div>
-{% endif %}
 
+{% else %}
+
+<div class="col-md-6 offset-md-3">
+<h1>Login</h1>
+<br/>
+
+<form method="POST" action="{% url 'home' %}">
+	{% csrf_token %}
+
+  <div class="mb-3">
+    <input type="text" class="form-control" name="username", placeholder="Username" required>
+    
+  </div><br/>
+  <div class="mb-3">
+    <input type="password" class="form-control" name="password", placeholder="Password" required>
+  </div>
+  <br/>
+  <button type="submit" class="btn btn-secondary">Login</button>
+
+</form>
+{% endif %}
 {% endblock %}
