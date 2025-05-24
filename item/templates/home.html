@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+{% if user.is_authenticated %}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Welcome, {{ user.username }}!</h5>
+    <p class="card-text">You are logged in.</p>
+    <a href="{% url 'add_record' %}" class="btn btn-primary">Add Record</a>
+    <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+  </div>
+</div>
+{% else %}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Welcome to Django CRM!</h5>
+    <p class="card-text">Please log in or register to continue.</p>
+    <a href="{% url 'register' %}" class="btn btn-primary">Register</a>
+    <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}
